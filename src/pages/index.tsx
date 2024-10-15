@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const { data: wallet } = useWalletClient();
   const { chains } = useRelayChains(MAINNET_RELAY_API);
   const { data: config } = useRelayConfig(MAINNET_RELAY_API, {
+    user: wallet?.account.address,
     originChainId: "0",
     destinationChainId: "1",
     currency: "eth",
@@ -29,8 +30,8 @@ const Home: NextPage = () => {
     currency: "eth",
     toCurrency: "0x0000000000000000000000000000000000000000",
     toChainId: 1,
-    amount: "10000000000000000",
-    // amount: config?.user?.maxBridgeAmount,
+    // amount: "10000000000000000",
+    amount: config?.user?.maxBridgeAmount,
     wallet,
     tradeType: "EXACT_INPUT",
   };
